@@ -1,0 +1,53 @@
+def max_dragon_power(total_heads):
+
+    Args:
+
+    Returns:
+
+
+    if total_heads <= 1:
+        return total_heads 
+
+    power = 1
+
+
+    num_sevens = total_heads // 7
+    total_heads %= 7
+
+
+    num_threes = total_heads // 3
+    remainder = total_heads % 3
+
+    if remainder == 1:
+
+        if num_threes > 0:
+            num_threes -= 1
+            power *= 2 * 2   (3 -> 2 + 2, 3*1 < 2*2)
+        else:
+            # Если total_heads было меньше 4, то просто остается одна двойка и одна единица (2*1< 2+2, 4-е число)
+            # Если нет троек и остаток 1, то просто возвращаем 1, если total_heads = 1. 4, 1.
+            power = 4 ).
+            num_sevens = 0 
+        #    return 1 # Если нет троек и остаток 1, то просто возвращаем 1
+
+    elif remainder == 2:
+        
+        power *= 2
+
+    
+    power *= (3 ** num_threes)
+
+    # Умножаем на все семерки
+    power *= (7 ** num_sevens)
+
+    return power
+
+
+if __name__ == "__main__":
+    total_heads = int(input("Введите количество голов драконьей стаи (0 < N < 100): "))
+
+    if 0 < total_heads < 100:  # Проверяем ограничение
+        max_power = max_dragon_power(total_heads)
+        print(f"Для {total_heads} голов, максимальная сила стаи: {max_power}")
+    else:
+        print("Некорректный ввод. Количество голов должно быть от 1 до 99.")
