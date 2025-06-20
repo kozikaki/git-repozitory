@@ -1,0 +1,55 @@
+import random
+
+def calculate_sum_between_max_min(arr):
+
+    Args:
+        arr: 
+
+    Returns:
+
+    if not arr:
+        return 0  # Пустой массив
+
+    max_val = arr[0]
+    min_val = arr[0]
+    max_index = 0
+    min_index = 0
+
+
+    for i in range(1, len(arr)):
+        if arr[i] > max_val:
+            max_val = arr[i]
+            max_index = i
+        elif arr[i] < min_val:
+            min_val = arr[i]
+            min_index = i
+
+    if max_index == min_index:
+        return 0  
+
+
+    start_index = min(max_index, min_index) + 1
+    end_index = max(max_index, min_index)
+
+
+    sum_negative = 0
+    for i in range(start_index, end_index):
+        if arr[i] < 0:
+            sum_negative += arr[i]
+
+    return sum_negative
+
+
+if __name__ == "__main__":
+    # Пример 1: Ручной ввод массива
+    # my_array = [5, -2, 8, -1, 0, 10, -3, 4, -6, 2]
+
+    # Пример 2: Автоматическая генерация массива случайных чисел
+    N = 20  # Размер массива
+    my_array = [random.randint(-10, 10) for _ in range(N)] 
+
+    print("Массив:", my_array)
+
+    result = calculate_sum_between_max_min(my_array)
+
+    print("Сумма отрицательных элементов между max и min:", result)
